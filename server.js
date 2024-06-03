@@ -12,5 +12,5 @@ app.use(express.json());
 
 
 app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}`);
+  console.log(`Server running => http://localhost:${PORT}`);
 });
