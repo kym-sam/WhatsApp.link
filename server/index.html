@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <!--
+        
+  ─╔╗╔╗╔╗─╔╗─╔╗─╔═══╗─╔════╗─╔═══╗─╔═══╗─╔═══╗─╔═══╗──
+  ─║║║║║║─║║─║║─║╔═╗║─║╔╗╔╗║─║╔═╗║─║╔═╗║─║╔═╗║─║╔═╗║───
+  ─║║║║║║─║╚═╝║─║║─║║─╚╝║║╚╝─║╚══╗─║║─║║─║╚═╝║─║╚═╝║───
+  ─║╚╝╚╝║─║╔═╗║─║╚═╝║───║║───╚══╗║─║╚═╝║─║╔══╝─║╔══╝───
+  ─╚╗╔╗╔╝─║║─║║─║╔═╗║───║║───║╚═╝║─║╔═╗║─║║────║║────
+  ──╚╝╚╝──╚╝─╚╝─╚╝─╚╝───╚╝───╚═══╝─╚╝─╚╝─╚╝────╚╝────
+
+    -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Welcome!"/>
+    <meta name="og:description" content="Welcome!"/>
+    <meta name="og:url" content=""/>
+    <meta name="og:title" content="WhatsApp.link"/>
+    <meta name="og:image" content="">
+    <meta property="og:image" content="" />
+    <meta property="og:image:secure_url" content="" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="400" />
+    <meta property="og:image:height" content="300" />
+    <meta property="og:image:alt" content="Not for Drugs" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="./image/WhatsApp-icone.png" type="image/x-icon">
+    <title>WhatsApp link</title>
+    <script src="./scripts/jquery-3.6.3.min.js"></script>
+    <script src="./scripts/main.js"></script>
+</head>
+<body>
+    <div class="wel">
+        <h2 style="font-weight: 400;" id="welcome">WELCOME!</h2>
+        <br>
+        <img src="./image/WhatsApp-icone.png" width="60"/>
+    </div>
+    <br>
+    <div class="namerp">
+    <p style="font-size: 15px;">- Enter your WhatsApp number.</p>
+    </div>
+    <div class="input-number">
+        <div class="blicknone">
+        <div class="inputsflex">
+          <div class="numberbr">
+        <input type="text" value="+613" id="number34" class="input"/>
+        </div>
+        <div class="input-number-br">
+            <input type="text" name="number" class="input" id="number" placeholder="00 0000-0000" onfocus="this.placeholder=''" onblur="this.placeholder='00 0000-0000'" required/>
+            <script>
+                $(document).ready(function(){
+          $('#number').mask('00 0000-0000');
+          $('#number34').mask('+000');
+      })
+              </script>
+        </div>
+        </script>
+        </div>
+        <br>
+        <div class="namerp">
+            <p style="font-size: 15px;">- Enter the text to be sent.</p>
+            </div>
+        <input type="text" name="text" id="text" class="input-text" placeholder="" onblur="this.placeholder=''" onfocus="this.placeholder=''" required/>
+        <br>
+        <br>
+        </div>
+        <div class="btns">
+       <button type="submit" class="btn-sub" onclick="clickNewa()" disabled>Create URL</button>
+       <br>
+       <div class="linkmanos">
+        <a href="" id="linked" class="idlink"></a>
+</div>
+       <button class="copy btn-cop" onclick="copyText()">Copy URL</button>
+       <br>
+       <button class="btn-read" onclick="read()">Create another link</button>
+       <br>
+     </div>
+    </div>      
+        <script>
+        function read(){
+            location.reload();
+        }
+    </script>
+       <script>
+
+document.getElementById('number').addEventListener('input', function() {
+    const input = document.getElementById('number');
+    const button = document.querySelector('.btn-sub');
+    if (this.value.length === 12) {
+        button.disabled = false;
+        Atived()
+    } else {
+        button.disabled = true;
+        desabled()
+    }
+});
+
+function Atived(){
+    const button = document.querySelector('.btn-sub');
+    button.innerText = 'Activated!'; 
+}
+function desabled(){
+    const button = document.querySelector('.btn-sub');
+    button.innerText = 'Blocked';
+}
+
+let https;
+
+        function clickNewa(){     
+        const number = document.getElementById('number').value;
+        const text = document.getElementById('text').value;  
+        const br = document.getElementById('number34').value;
+        const link = document.querySelector('.idlink');
+        const welcome = document.getElementById('welcome');
+
+        const btn = document.querySelector('.btn-sub');
+        let textoFormatado;
+            if(text){
+         textoFormatado = text.split(' ').join('%20');
+         }
+         else{
+        textoFormatado = text ? text : "Hello";
+         }
+         const numeroFormatado = number.replace(/\s|-/g, '');
+         const linked = document.getElementById('linked');
+         btn.innerText = 'Loading...';
+        https =  `https://wa.me/${br}${numeroFormatado}?text=${textoFormatado}`;
+        link.innerText = 'WhatsApp.link';
+        welcome.innerText = 'Thank you for using the WhatsApp.link'
+        linked.href = https;
+         btnCop();
+        // window.location.href = https;
+        const data = `data: { \n"number": "${numeroFormatado}",\n"text": "${text}",\n"url: "${https}"\n}`;
+        console.log(data);
+
+        }
+
+        
+        function copyText() {
+        var textToCopy = https;
+        navigator.clipboard.writeText(textToCopy)
+          .then(function() {
+            const copy = document.querySelector('.btn-cop');
+            copy.innerText = "Copied!";
+            copy.classList.add("coped", "centered");
+            copy.classList.add("coped");
+        
+          })
+          .catch(function() {
+            copy.innerText = "Erro.";
+            copy.classList.add("coped", "centered");
+            copy.classList.add("coped");
+        
+          });
+        }
+
+        function btnCop(){
+            document.querySelector('.btn-cop').style.display = 'block';
+            document.querySelector('.blicknone').style.display = 'none';
+            document.querySelector('.btn-sub').style.display = 'none';
+            document.querySelector('.namerp').style.display = 'none';
+            document.querySelector('.btn-read').style.display = 'block';
+        }
+
+
+</script>
+</body>
+</html>
